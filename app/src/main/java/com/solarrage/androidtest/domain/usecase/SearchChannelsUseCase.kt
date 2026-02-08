@@ -6,5 +6,15 @@ import com.solarrage.androidtest.domain.repository.ChannelRepository
 class SearchChannelsUseCase(
     private val repository: ChannelRepository
 ) {
-    suspend fun execute(query: String): List<Channel> = emptyList()
+    suspend fun execute(query: String): List<Channel> {
+        val channels = repository.getChannels()
+
+        val trimmed = query.trim()
+        if(trimmed.isEmpty()) return channels
+
+        return channels.filter {channel ->
+            channel.title.contains(trimmed, ignoreCase = true) ||
+                    channel.title.contains(trimmed, ignoreCase = true)
+        }
+    }
 }

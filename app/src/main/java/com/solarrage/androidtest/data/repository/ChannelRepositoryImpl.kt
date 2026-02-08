@@ -10,5 +10,9 @@ class ChannelRepositoryImpl(
     private val mapper: ChannelMapper
 ) : ChannelRepository {
 
-    override suspend fun getChannels(): List<Channel> = emptyList()
+    override suspend fun getChannels(): List<Channel> {
+        return localDataSource
+            .loadChannels()
+            .map(mapper::map)
+    }
 }
