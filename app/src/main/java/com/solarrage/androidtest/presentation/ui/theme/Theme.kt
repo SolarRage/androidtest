@@ -1,6 +1,5 @@
-package com.solarrage.androidtest.ui.theme
+package com.solarrage.androidtest.presentation.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

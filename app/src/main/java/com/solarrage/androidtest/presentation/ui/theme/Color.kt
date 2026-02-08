@@ -1,4 +1,4 @@
-package com.solarrage.androidtest.ui.theme
+package com.solarrage.androidtest.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
