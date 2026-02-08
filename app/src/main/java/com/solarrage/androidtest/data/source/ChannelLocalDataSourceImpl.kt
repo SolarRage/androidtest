@@ -1,13 +1,13 @@
 package com.solarrage.androidtest.data.source
 
-import android.content.Context
+import android.content.res.AssetManager
 import com.solarrage.androidtest.data.model.ChannelDto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 
 class ChannelLocalDataSourceImpl(
-    private val context: Context
+    private val assetManager: AssetManager
 ) : ChannelLocalDataSource {
 
     private val json = Json {
@@ -22,7 +22,8 @@ class ChannelLocalDataSourceImpl(
 
     private suspend fun loadAndCache(): List<ChannelDto> =
         withContext(Dispatchers.IO) {
-            val text = context.assets
+
+            val text = assetManager
                 .open(FILE_NAME)
                 .bufferedReader()
                 .use { it.readText() }
