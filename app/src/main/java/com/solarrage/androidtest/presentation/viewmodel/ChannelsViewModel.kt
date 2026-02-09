@@ -28,7 +28,7 @@ class ChannelsViewModel(
 
     val channels: StateFlow<List<Channel>> =
         query
-            .debounce(300)
+            .debounce(STOP_TIMEOUT_MS)
             .distinctUntilChanged()
             .mapLatest { query ->
                 withContext(dispatchers.default) {
@@ -37,11 +37,16 @@ class ChannelsViewModel(
             }
             .stateIn(
                 scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5_000),
+                started = SharingStarted.WhileSubscribed(SEARCH_DEBOUNCE_MS),
                 initialValue = emptyList()
             )
 
     fun onQueryChanged(value: String){
         query.value = value
+    }
+
+    private companion object {
+        const val SEARCH_DEBOUNCE_MS = 300L
+        const val STOP_TIMEOUT_MS = 5_000L
     }
 }
