@@ -11,9 +11,9 @@ UI is intentionally simple.
 
 The project is split into three logical layers:
 
-data – data sources, DTOs, mappers and repository implementation
-domain – business models, repository contracts and use cases
-presentation – ViewModel and Compose UI
+- data – data sources, DTOs, mappers and repository implementation
+- domain – business models, repository contracts and use cases
+- presentation – ViewModel and Compose UI
 
 
 Data flow:
