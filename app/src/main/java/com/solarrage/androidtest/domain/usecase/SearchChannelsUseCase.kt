@@ -13,8 +13,8 @@ class SearchChannelsUseCase(
         if(trimmed.isEmpty()) return channels
 
         return channels.filter {channel ->
-            channel.title.contains(trimmed, ignoreCase = true) ||
-                    channel.title.contains(trimmed, ignoreCase = true)
+            channel.category.subCategory.name.contains(trimmed, ignoreCase = true) ||
+                    channel.category.subCategory.subCategory.name.contains(trimmed, ignoreCase = true)
         }
     }
 }

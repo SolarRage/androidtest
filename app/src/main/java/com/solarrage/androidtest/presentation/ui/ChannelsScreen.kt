@@ -20,7 +20,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.solarrage.androidtest.domain.model.Category
 import com.solarrage.androidtest.domain.model.Channel
+import com.solarrage.androidtest.domain.model.SubCategory
+import com.solarrage.androidtest.domain.model.SubCategory1
 import com.solarrage.androidtest.presentation.viewmodel.ChannelsViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -88,7 +91,7 @@ private fun ChannelItem(channel: Channel) {
         )
 
         Text(
-            text = channel.category,
+            text = channel.category.name,
             style = MaterialTheme.typography.bodySmall
         )
     }
@@ -99,9 +102,9 @@ private fun ChannelItem(channel: Channel) {
 private fun ChannelsContentPreview() {
 
     val listOfChannels = listOf(
-        Channel("1", "Hype Channel 1", "Sports", false),
-        Channel("2", "Global Channel 2", "News", false),
-        Channel("3", "Local Channel 3", "News", false)
+        Channel("1", "Hype Channel 1", Category("Sports",  SubCategory("", SubCategory1(""))), false),
+        Channel("2", "Global Channel 2", Category("News",  SubCategory("", SubCategory1(""))), false),
+        Channel("3", "Local Channel 3", Category("News", SubCategory("", SubCategory1(""))), false)
     )
 
     ChannelsContent(
