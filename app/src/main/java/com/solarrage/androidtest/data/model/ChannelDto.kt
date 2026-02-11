@@ -6,24 +6,12 @@ import kotlinx.serialization.Serializable
 data class ChannelDto(
     val id: String,
     val title: String,
-    val category: Category,
-    val isLive: Boolean
-)
-
-
-@Serializable
-data class Category(
-    val name: String,
-    val subCategory: SubCategory
+    val isLive: Boolean,
+    val category: CategoryDto
 )
 
 @Serializable
-data class SubCategory(
+data class CategoryDto(
     val name: String,
-    val subCategory: SubCategory1,
+    val subCategory: CategoryDto? = null
 )
-
-@Serializable
-data class SubCategory1(
-    val name: String,
-    )

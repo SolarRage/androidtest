@@ -8,13 +8,12 @@ class SearchChannelsUseCase(
 ) {
     suspend fun execute(query: String): List<Channel> {
         val channels = repository.getChannels()
-
         val trimmed = query.trim()
-        if(trimmed.isEmpty()) return channels
-
-        return channels.filter {channel ->
-            channel.category.subCategory.name.contains(trimmed, ignoreCase = true) ||
-                    channel.category.subCategory.subCategory.name.contains(trimmed, ignoreCase = true)
+        if (trimmed.isEmpty()) return channels
+        return channels.filter { channel ->
+            channel.categories.any { categoryName ->
+                categoryName.contains(trimmed, ignoreCase = true)
+            }
         }
     }
 }
